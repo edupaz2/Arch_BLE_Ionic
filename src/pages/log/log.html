@@ -1,0 +1,34 @@
+<ion-header>
+	<ion-card *ngIf='!_pairedDevice' class="class-bluetooth">
+	    <ion-list>
+		    <button ion-item (click)='pairDevice()' *ngIf='!_pairedDevice'>
+		      <ion-icon name="link" item-start></ion-icon>
+		        No paired devices
+		        <ion-icon name="add" item-end></ion-icon>
+		    </button>
+	    </ion-list>
+	</ion-card>
+
+	<ion-card *ngIf='_pairedDevice' class="class-bluetooth">
+	    <ion-list>
+		    <button ion-item (click)='goToDevice()'>
+		      	<ion-icon name="link" item-start></ion-icon>
+		        Connected to {{ _pairedDevice.getName() }}
+		    	<ion-icon name="arrow-dropright" item-end></ion-icon>
+		    </button>
+	    </ion-list>
+	</ion-card>
+</ion-header>
+
+<ion-content #content>
+
+	<ion-list *ngIf='_pairedDevice'>
+	    <ion-item *ngFor="let d of _dates; let i = index">
+			<!--ion-thumbnail item-left>
+				<img src="assets/epg.jpg">
+			</ion-thumbnail-->
+			<h2>{{d | date:'yyyy-MM-dd HH:mm:ss'}} {{_doses[i].toFixed(1)}} IU</h2>
+	    </ion-item>
+  	</ion-list>
+
+</ion-content>

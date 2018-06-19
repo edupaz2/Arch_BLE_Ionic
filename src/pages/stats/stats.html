@@ -1,0 +1,66 @@
+<ion-header>
+	<ion-toolbar color="light" mode="md">
+		<ion-segment color="dark" mode="md">
+			<ion-segment-button (click)='daily()'>
+			Day
+			</ion-segment-button>
+			<ion-segment-button (click)='weekly()'>
+			Week
+			</ion-segment-button>
+			<ion-segment-button (click)='monthly()'>
+			Month
+			</ion-segment-button>
+			<ion-segment-button (click)='yearly()'>
+			Year
+			</ion-segment-button>
+		</ion-segment>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen #myContent>
+	<ion-card>
+		<ion-card-content>
+			<canvas #lineCanvas></canvas>
+		</ion-card-content>
+	</ion-card>
+	<ion-list *ngIf='_section==1'>
+	    <ion-item *ngFor="let d of _dates; let i = index">
+			<ion-thumbnail item-left>
+				<img src="assets/epg.jpg">
+			</ion-thumbnail>
+			<h2>{{d | date:'HH:mm'}}</h2>
+			<p>{{_doses[i]}} IU</p>
+	    </ion-item>
+  	</ion-list>
+
+	<ion-list *ngIf='_section==2'>
+	    <ion-item *ngFor="let d of _dates; let i = index">
+			<ion-thumbnail item-left>
+				<img src="assets/epg.jpg">
+			</ion-thumbnail>
+			<h2>{{d | date:'HH:mm dd'}}</h2>
+			<p>{{_doses[i]}} IU</p>
+	    </ion-item>
+  	</ion-list>
+
+	<ion-list *ngIf='_section==3'>
+	    <ion-item *ngFor="let d of _dates; let i = index">
+			<ion-thumbnail item-left>
+				<img src="assets/epg.jpg">
+			</ion-thumbnail>
+			<h2>{{d | date:'HH:mm dd-MM'}}</h2>
+			<p>{{_doses[i]}} IU</p>
+	    </ion-item>
+  	</ion-list>
+
+	<ion-list *ngIf='_section==4'>
+	    <ion-item *ngFor="let d of _dates; let i = index">
+			<ion-thumbnail item-left>
+				<img src="assets/epg.jpg">
+			</ion-thumbnail>
+			<h2>{{d | date:'HH:mm dd-MM-yyyy'}}</h2>
+			<p>{{_doses[i]}} IU</p>
+	    </ion-item>
+  	</ion-list>
+
+</ion-content>

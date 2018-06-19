@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>Select a device</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button (click)='attemptConnection(device)' ion-item *ngFor='let device of devices'>
+      <h2>{{ device.name }}</h2>
+      <p>{{ device.id }}</p>
+      <button ion-button clear item-end>Rssi = {{ device.rssi }}</button>
+      <!--ion-item item-end>Rssi = {{ device.rssi }}</ion-item-->
+    </button>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+  <div style="text-align: center;">
+    <button ion-button round (click)="actionBtClick()">{{actionBtLbl}}</button>
+  </div>
+  </ion-toolbar>
+</ion-footer>

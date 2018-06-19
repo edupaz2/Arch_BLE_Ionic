@@ -1,0 +1,46 @@
+<ion-header>
+	<ion-toolbar color="light" mode="md">
+		<ion-segment color="dark" mode="md" [(ngModel)]="section">
+			<ion-segment-button value="one">
+			How to
+			</ion-segment-button>
+			<ion-segment-button value="two">
+			Service
+			</ion-segment-button>
+			<ion-segment-button value="three">
+			Errors
+			</ion-segment-button>
+			<ion-segment-button value="four">
+			Shop
+			</ion-segment-button>
+		</ion-segment>
+	</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-card *ngIf='_pairedDevice'>
+		<ion-card-header>
+		Device {{_pairedDevice.getName()}}
+		</ion-card-header>
+
+		<ion-list>
+			<button ion-item>
+				<ion-icon name="info" item-start></ion-icon>
+				Id {{_pairedDevice.getId()}}
+			</button>
+
+			<button ion-item>
+				<ion-icon name="warnings" item-start></ion-icon>
+				Warnings
+			</button>
+
+			<button ion-item>
+				<ion-icon name="link" item-start></ion-icon>
+				Disconnect
+			</button>
+		</ion-list>
+	</ion-card>
+
+</ion-content>

@@ -1,0 +1,33 @@
+.ios, .md {
+
+	page-home {
+
+        ion-content {
+            background: #55acee;
+        }
+
+        ion-card {
+            position: relative;
+            text-align: center;
+        }
+
+        .class-bluetooth {
+            background: #FF7700;
+        }
+
+        .class-title-content {
+            font-size: 1.0em;
+            font-weight: bold;
+            background: #33acee;
+        }
+
+        .class-subtitle {
+            font-size: 1.0em;
+            position: absolute;
+            top: 52%;
+            width: 100%;
+            color: #000;
+        }
+	}
+
+}

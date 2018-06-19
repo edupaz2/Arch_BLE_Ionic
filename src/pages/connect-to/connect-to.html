@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Pairing to device</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item-divider *ngIf='!ble.enabled()'>
+    <ion-icon name="warning" item-start></ion-icon>
+      Bluetooth is off
+      <button (click)='enableBluetooth()' ion-button round item-end>
+        <ion-icon name="bluetooth" item-start></ion-icon>
+        Turn on
+      </button>
+  </ion-item-divider>
+  <ion-list>
+    <button (click)='attemptConnection(device)' ion-item *ngFor='let device of ble.getScanDevices()'>
+      <h2>{{ device.name }}</h2>
+      <p>{{ device.id }}</p>
+      <button ion-button clear item-end>Rssi = {{ device.rssi }}</button>
+      <!--ion-item item-end>Rssi = {{ device.rssi }}</ion-item-->
+    </button>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+  <div style="text-align: center;">
+    <button ion-button round (click)="ble.scan()" [disabled]="!ble.enabled()">Scan</button>
+  </div>
+  </ion-toolbar>
+</ion-footer>
+

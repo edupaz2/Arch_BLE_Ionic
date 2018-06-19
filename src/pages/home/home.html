@@ -1,0 +1,169 @@
+<ion-header>
+	<ion-card *ngIf='!_pairedDevice' class="class-bluetooth">
+	    <ion-list>
+		    <button ion-item (click)='pairDevice()' *ngIf='!_pairedDevice'>
+		      <ion-icon name="link" item-start></ion-icon>
+		        No paired devices
+		        <ion-icon name="add" item-end></ion-icon>
+		    </button>
+	    </ion-list>
+	</ion-card>
+
+	<ion-card *ngIf='_pairedDevice' class="class-bluetooth">
+	    <ion-list>
+		    <button ion-item (click)='goToDevice()'>
+		      	<ion-icon name="link" item-start></ion-icon>
+		        Connected to {{ _pairedDevice.getName() }}
+		    	<ion-icon name="arrow-dropright" item-end></ion-icon>
+		    </button>
+	    </ion-list>
+	</ion-card>
+</ion-header>
+
+<ion-content>
+
+<ion-card *ngIf='_pairedDevice'>
+	<ion-item>
+		<ion-avatar item-start>
+		<img src="assets/epg.jpg">
+		</ion-avatar>
+		<h2>{{_peripheralData.name}}</h2>
+		<p>{{_peripheralData.id}}</p>
+	</ion-item>
+
+	<ion-card-content>
+		<ion-list>
+			<!--ion-item class="class-title-content">
+			<ion-icon name="calendar" item-start></ion-icon>
+			Day insulin
+			</ion-item>
+
+			<ion-item class="class-title-content">
+			<ion-icon name="clock" item-start></ion-icon>
+			Time since
+			</ion-item-->
+
+			<ion-item class="class-title-content">
+			<ion-icon name="color-filter" item-start></ion-icon>
+			Nozzle: {{_pairedDevice.getDose().toFixed(1)}} IU
+			</ion-item>
+
+			<ion-item class="class-title-content">
+			<ion-icon name="battery-charging" item-start></ion-icon>
+			Battery: {{_pairedDevice.getBatteryLevel()}}%
+			</ion-item>
+		</ion-list>
+	</ion-card-content>
+
+	<!--ion-row *ngIf='_pairedDevice'>
+		<ion-col>
+			<button ion-button icon-left clear (click)='model.syncData()'>
+			<ion-icon name="sync"></ion-icon>
+			<div>Sync data</div>
+			</button>
+		</ion-col>
+		<ion-col center text-center>
+			<ion-note>
+			Last sync 11h ago
+			</ion-note>
+		</ion-col>
+	</ion-row-->
+
+	<ion-row>
+		<ion-col>
+			<button ion-button icon-left clear (click)='unpairDevice()'>
+			<ion-icon name="close"></ion-icon>
+			<div>Disconnect</div>
+			</button>
+		</ion-col>
+	</ion-row>
+
+</ion-card>
+
+<ion-card *ngIf='!_ble.enabled()'>
+    <ion-list>
+    	<button ion-item (click)='enableBluetooth()' class="class-bluetooth">
+			<ion-icon name="bluetooth" item-start></ion-icon>
+			Bluetooth Off
+			<ion-icon name="arrow-dropright" item-end></ion-icon>
+		</button>
+    </ion-list>
+</ion-card>
+
+<ion-card *ngIf='_peripheralData'>
+	<ion-item>
+		<ion-avatar item-start>
+		<img src="assets/epg.jpg">
+		</ion-avatar>
+		<h2>{{_peripheralData.name}} {{_peripheralData.id}}</h2>
+		<p>RSSI: {{_peripheralData.rssi}}</p>
+	</ion-item>
+	<!--ion-list>
+		<ion-list-header>
+			Services
+		</ion-list-header>
+		<ion-item *ngFor='let service of _peripheralData.services'>
+			<h2> Service: {{ service }}</h2>
+		</ion-item>
+	</ion-list-->
+	<ion-list>
+		<ion-list-header>
+			Characteristics
+		</ion-list-header>
+		<ion-item *ngFor='let characteristic of _peripheralData.characteristics'>
+			<h2> Characteristic: {{ characteristic.characteristic }}</h2>
+			<p> Service: {{ characteristic.service }}</p>
+		</ion-item>
+	</ion-list>
+</ion-card>
+
+<ion-card *ngIf='_pairedDevice'>
+    <ion-list>
+		<button ion-item *ngIf='_pairedDevice.pendingWarn()'>
+			<ion-icon name="information-circle" item-start></ion-icon>
+			Warnings ({{_pairedDevice.getWarnings()}})
+		</button>
+		<button ion-item *ngIf='_pairedDevice.pendingErr()'>
+			<ion-icon name="warning" item-start></ion-icon>
+			Errors ({{_pairedDevice.getErrors()}})
+		</button>
+    </ion-list>
+</ion-card>
+
+<ion-card>
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="assets/epg.jpg">
+    </ion-avatar>
+    <h2>News feed</h2>
+    <p>June 13, 2018</p>
+  </ion-item>
+
+  <img src="assets/epg.jpg">
+
+  <ion-card-content>
+    <p>The InsuJet™ will launch soon. Stay tuned for more details.</p>
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>12 Likes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>4 Comments</div>
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+      <ion-note>
+        11h ago
+      </ion-note>
+    </ion-col>
+  </ion-row>
+
+</ion-card>
+</ion-content>

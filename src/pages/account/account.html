@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-card *ngIf='!_pairedDevice' class="class-bluetooth">
+      <ion-list>
+        <button ion-item (click)='pairDevice()' *ngIf='!_pairedDevice'>
+          <ion-icon name="link" item-start></ion-icon>
+            No paired devices
+            <ion-icon name="add" item-end></ion-icon>
+        </button>
+      </ion-list>
+  </ion-card>
+
+  <ion-card *ngIf='_pairedDevice' class="class-bluetooth">
+      <ion-list>
+        <button ion-item (click)='goToDevice()'>
+            <ion-icon name="link" item-start></ion-icon>
+            Connected to {{ _pairedDevice.getName() }}
+          <ion-icon name="arrow-dropright" item-end></ion-icon>
+        </button>
+      </ion-list>
+  </ion-card>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-list>
+      <button ion-item>
+        <ion-icon name="cart" item-start></ion-icon>
+        Online shop
+      </button>
+
+      <button ion-item>
+        <ion-icon name="medical" item-start></ion-icon>
+        Medical profile
+      </button>
+
+      <button ion-item>
+        <ion-icon name="settings" item-start></ion-icon>
+        Settings
+      </button>
+
+    </ion-list>
+  </ion-card>
+
+  <!--ion-item-divider color="light">My devices</ion-item-divider>
+  <ion-list>
+    <button (click)='goToDevice(device)' ion-item *ngIf='paired()'>
+      Device {{ ble.getPairedDevice().name }}
+      <ion-icon name="arrow-dropright" item-end></ion-icon>
+    </button>
+    <ion-item-divider>
+      <ion-icon name="link" item-start></ion-icon>
+      New device
+      <button (click)='linkDevice()' ion-button item-end>Add</button>
+  </ion-item-divider>
+  </ion-list>
+  <ion-item-divider color="light">Others</ion-item-divider>
+  <ion-list>
+    <button (click)='expandItem(item)' ion-item *ngFor='let item of items'>
+      <ion-thumbnail item-start>
+        <img src="http://placeholder.it/100">
+      </ion-thumbnail>
+      <h2>My neighbour Totoro</h2>
+      <p>Algun director</p>
+      <expandable [expandHeight]='itemExpandHeight' [expanded]='item.expanded'>
+        Hello people
+      </expandable>
+      <button ion-button clear item-end>View</button>
+    </button>
+  </ion-list-->
+</ion-content>

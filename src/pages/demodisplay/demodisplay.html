@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Device {{_device.id}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list>
+	    <ion-item *ngFor='let characteristic of _peripheralData.characteristics; let i = index;'>
+	      <h2> Characteristic: {{ characteristic.characteristic }}</h2>
+	      <p> Service: {{ characteristic.service }}</p>
+	      <ion-item *ngFor='let prop of characteristic.properties'>
+	      	<!-- <ion-label floating item-start>{{ prop }}</ion-label> -->
+	      	<p>{{prop}}: {{_toread[i]}}</p>
+	      	<ion-input type="text" [(ngModel)]="_towrite[i]" *ngIf='prop == "Write"'></ion-input>
+			<button (click)='write(characteristic.characteristic, characteristic.service, i)' ion-button round item-end *ngIf='prop == "Write"'>
+				<ion-icon name="send" item-start></ion-icon>
+				Write
+			</button>
+	      </ion-item>
+	    </ion-item>
+  </ion-list>
+</ion-content>
